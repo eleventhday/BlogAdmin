@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Yazarlar";
+}
+
+<table class="table table-hover">
+    <thead>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col"></th>
+    </thead>
+    <tbody>
+        <a href="/Blog/Blog" class="btn btn-primary">Yazı Ekle</a> <br />
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Title</td>
+                <td>
+                    @if (item.IsPublish)
+                    {
+                        <a class="btn btn-success">Yayınlandı</a>
+                    }
+                    else
+                    {                    
+                    <a class="btn btn-light" asp-route-id="@item.Id" asp-action="Publish">Yayınla</a>
+                    }
+                    <a class="btn btn-danger" asp-route-id="@item.Id" asp-action="DeleteBlog">Sil</a>
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
